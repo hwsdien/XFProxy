@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 	<head>
 		<meta charset="utf-8"/>
@@ -6,6 +6,7 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/options.js"></script>
 	</head>
 	<body>
 		<div class="container">
@@ -21,42 +22,13 @@
 							<h3 class="panel-title">代理列表</h3>
 						</div>
 						<div class="panel-body">
-							<table class="table table-bordered">
+							<table class="table table-bordered" id="proxy_list">
 								<tr>
 									<th>名称</th>
 									<th>类型</th>
 									<th>操作</th>
 								</tr>
 								<tr>
-									<td>
-										<h5>日本 - 东京服务器</h5>
-									</td>
-									<td>Http</td>
-									<td>
-										<button type="button" class="btn btn-primary">修改</button>
-										<button type="button" class="btn btn-danger">删除</button>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h5>韩国 - 首尔服务器</h5>
-									</td>
-									<td>Http</td>
-									<td>
-										<button type="button" class="btn btn-primary">修改</button>
-										<button type="button" class="btn btn-danger">删除</button>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h5>美国 - LA服务器</h5>
-									</td>
-									<td>Http</td>
-									<td>
-										<button type="button" class="btn btn-primary">修改</button>
-										<button type="button" class="btn btn-danger">删除</button>
-									</td>
-								</tr>
 							</table>
 							<button type="button" class="btn btn-primary">增加新的代理</button>
 						</div>
