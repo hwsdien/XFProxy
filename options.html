@@ -1,0 +1,132 @@
+ <!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8"/>
+		<title>Socks v5 设置</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="page-header text-center">
+					<h1>XFProxy设置</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<h3 class="panel-title">代理列表</h3>
+						</div>
+						<div class="panel-body">
+							<table class="table table-bordered">
+								<tr>
+									<th>名称</th>
+									<th>类型</th>
+									<th>操作</th>
+								</tr>
+								<tr>
+									<td>
+										<h5>日本 - 东京服务器</h5>
+									</td>
+									<td>Http</td>
+									<td>
+										<button type="button" class="btn btn-primary">修改</button>
+										<button type="button" class="btn btn-danger">删除</button>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h5>韩国 - 首尔服务器</h5>
+									</td>
+									<td>Http</td>
+									<td>
+										<button type="button" class="btn btn-primary">修改</button>
+										<button type="button" class="btn btn-danger">删除</button>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h5>美国 - LA服务器</h5>
+									</td>
+									<td>Http</td>
+									<td>
+										<button type="button" class="btn btn-primary">修改</button>
+										<button type="button" class="btn btn-danger">删除</button>
+									</td>
+								</tr>
+							</table>
+							<button type="button" class="btn btn-primary">增加新的代理</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<h3 class="panel-title">代理详细信息</h3>
+						</div>
+						<div class="panel-body">
+							<form class="form-horizontal">
+								<div class="form-group">
+									<label for="type" class="col-sm-2 control-label">类型</label>
+									<div class="col-sm-10">
+										<div class="radio">
+											<label class="col-sm-2">
+												<input type="radio" name="type" id="type" value="http" checked/> Http
+											</label>
+											<label class="col-sm-2">
+												<input type="radio" name="type" id="type" value="http" /> Https
+											</label>
+											<label class="col-sm-2">
+												<input type="radio" name="type" id="type" value="http" /> Socks v4	
+											</label>
+											<label class="col-sm-2">
+												<input type="radio" name="type" id="type" value="http" /> Socks v5	
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="name" class="col-sm-2 control-label">名称</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="name" placeholder="名称"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="host" class="col-sm-2 control-label">主机</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="host" placeholder="主机"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="port" class="col-sm-2 control-label">端口</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="port" placeholder="端口"/>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="rules" class="col-sm-2 control-label">过滤规则</label>
+									<div class="col-sm-10">
+										<textarea class="form-control" rows="3" id="rules">*.local, 169.254/16,127.0.0.1</textarea>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+										<button type="submit" class="btn btn-primary">保存</button>
+										<button type="submit" class="btn btn-danger">删除</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

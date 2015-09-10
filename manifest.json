@@ -1,0 +1,23 @@
+{
+    "name": "XFProxy",
+    "version": "1.0.0",
+    "manifest_version": 2,
+    "description": "Proxy Management Extension",
+    "icons": {
+        "128": "images/xfproxy-128.png",
+        "48":  "images/xfproxy-48.png",
+        "16":  "images/xfproxy.png"
+    },
+    "permissions": [
+        "proxy",
+        "tabs",
+        "unlimitedStorage",
+        "storage"
+    ],
+    "options_page": "options.html",
+    "browser_action": {
+        "default_icon": "images/xfproxy.png",
+        "default_title": "XFProxy",
+        "default_popup": "popup.html"
+    }
+}
