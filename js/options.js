@@ -109,11 +109,14 @@ var empty = function() {
 
 
 $(function() {
+	$("#info").hide();
 
 	init_list();
 
 	//修改
 	$("#proxy_list").delegate("button[name='modify']", "click", function(){
+		$("#info").show();
+		$("#banner").hide();
 		var id = $(this).prop('value');
 		var data = get_data(id);
 		if (data != null) {
@@ -136,6 +139,9 @@ $(function() {
 
 	//保存
 	$("#save").delegate("", "click", function() {
+		$("#msg").empty();
+		$("#msg").append('<div class="alert alert-info alert-dismissible" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>正在保存</strong></div>');
+
 		var id = $("#code").val();
 		var name = $("#name").val();
 		var type = null;
@@ -149,13 +155,20 @@ $(function() {
 		var port = $("#port").val();
 		var rules = $("#rules").val();
 
+
+		$("#msg").empty();
 		if (save(id, name, type, host, port, rules)) {
 			init_list();
+			$("#msg").append('<div class="alert alert-success alert-dismissible" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>保存成功!</strong></div>');
+		} else {
+			$("#msg").append('<div class="alert alert-danger alert-dismissible" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>保存失败!</strong></div>');
 		}
 	});
 
 	//增加
 	$("#add").delegate("", "click", function() {
+		$("#info").show();
+		$("#banner").hide();
 		var id = get_id();
 		var name = "新代理服务器";
 		empty();
