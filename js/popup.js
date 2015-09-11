@@ -90,7 +90,8 @@ var custom = function(id) {
 	var host = data.host;
 	var port = data.port;
 	var type = data.type;
-	var rules = data.rules;
+	var bypass = data.rules.split(",");
+
 
 	var config = {
 		mode: "fixed_servers",
@@ -100,7 +101,7 @@ var custom = function(id) {
 				host: host,
 				port: port
 			},
-			bypassList: []
+			bypassList: bypass
 		}
 	};
 	chrome.proxy.settings.set({value: config, scope: 'regular'}, function() {});
