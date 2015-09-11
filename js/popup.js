@@ -25,8 +25,31 @@ var init = function() {
 	}
 }
 
+var active = function() {
+	$("#proxy").find("a").prop("class", "list-group-item");
+	var selected = "direct";
+	if (localStorage.getItem("selected") == null) {
+		localStorage.setItem("selected", selected);
+	} else {
+		selected = localStorage.getItem("selected");
+	}
+	if (selected == "direct") {
+		$("#direct").prop("class", "list-group-item active");
+	} else if (selected == "system") {
+		$("#system").prop("class", "list-group-item active");
+	} else {
+		$("#proxy a ").each(function() {
+			var value = $(this).attr("value");
+			if (value == selected) {
+				$(this).prop("class", "list-group-item active");
+			}
+		});
+	}
+}
+
 //直接连接
 var direct = function() {
+	localStorage.setItem("selected", "direct");
 	var config = {
 		mode: "direct"
 	};
@@ -35,6 +58,7 @@ var direct = function() {
 
 //使用系统代理连接
 var system = function() {
+	localStorage.setItem("selected", "system");
 	var config = {
 		mode: "system"
 	};
@@ -62,6 +86,7 @@ var custom = function(id) {
 	var data = get_data(id);
 	if (data == null) return false;
 
+	localStorage.setItem("selected", id);
 	var host = data.host;
 	var port = data.port;
 	var type = data.type;
@@ -85,6 +110,7 @@ var custom = function(id) {
 $(function() {
 	//初始化数据
 	init();
+	active();
 
 	//使用代理
 	$("#proxy").delegate("a", "click", function() {
