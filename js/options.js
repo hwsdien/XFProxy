@@ -34,7 +34,7 @@ var is_port = function(port) {
 var init_list = function() {
 	if (localStorage.getItem('proxy_data') != null) {
 		var proxy_data = JSON.parse(localStorage.getItem('proxy_data'));
-		$("#proxy_list").find("tr").remove();
+		$("#proxy_list").find("tr:gt(0)").remove();
 		$.each(proxy_data, function(n, data) {
 			$("#proxy_list").append('<tr><td><h5>'+data.name+'</h5> </td> <td>'+data.type+'</td> <td> <button type="button" class="btn btn-primary" value="'+data.id+'" name="modify">修改</button> <button type="button" class="btn btn-danger" value="'+data.id+'" name="delete">删除</button> </td> </tr>');
 		});
@@ -181,7 +181,7 @@ $(function() {
 		var ip_validate = is_ip(host);
 		var port_validate = is_port(port);
 		if (type == null) {
-			$("#msg").append('<div class="alert alert-danger alert-dismissible" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>保存失败!</strong> -- 请选择代理类型</div>');
+			$("#msg").append('<div class="alert alert-danger alert-dismissible" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>保存失败!</strong> -- </div>');
 			return false;
 		}
 
