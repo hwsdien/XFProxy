@@ -9,6 +9,27 @@ var data = [
 localStorage.setItem('proxy_data', JSON.stringify(data));
 */
 
+//判断是否为IP
+var is_ip = function(ip) {
+	if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ip)) {
+		return true;
+	} else {
+		return false;
+	}
+
+}
+
+//判断是否是端口
+var is_port = function(port) {
+	if (port >= 1 && port <= 65535) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
+
 //初始化代理列表
 var init_list = function() {
 	if (localStorage.getItem('proxy_data') != null) {
@@ -117,6 +138,7 @@ $(function() {
 	$("#proxy_list").delegate("button[name='modify']", "click", function(){
 		$("#info").show();
 		$("#banner").hide();
+		$("#msg").empty();
 		var id = $(this).prop('value');
 		var data = get_data(id);
 		if (data != null) {
@@ -152,27 +174,51 @@ $(function() {
 		});
 
 		var host = $("#host").val();
-		var port = $("#port").val();
+		var port = parseInt($("#port").val());
 		var rules = $("#rules").val();
 
-
 		$("#msg").empty();
+		var ip_validate = is_ip(host);
+		var port_validate = is_port(port);
+		if (type == null) {
+			$("#msg").append('<div class="alert alert-danger alert-dismissible" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>保存失败!</strong> -- 请选择代理类型</div>');
+			return false;
+		}
+
+		if (!ip_validate) {
+			$("#msg").append('<div class="alert alert-danger alert-dismissible" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>保存失败!</strong> -- 主机需要正确的IP</div>');
+			return false;
+		}
+
+		if (!port_validate) {
+			$("#msg").append('<div class="alert alert-danger alert-dismissible" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>保存失败!</strong> -- 端口需要 1 - 65535的整数</div>');
+			return false;
+		}
+
+		if (name.length < 4 || name.length > 10) {
+			$("#msg").append('<div class="alert alert-danger alert-dismissible" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>保存失败!</strong> -- 名称不能低于4位或高于10位</div>');
+			return false;
+		}
+
 		if (save(id, name, type, host, port, rules)) {
 			init_list();
 			$("#msg").append('<div class="alert alert-success alert-dismissible" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>保存成功!</strong></div>');
 		} else {
 			$("#msg").append('<div class="alert alert-danger alert-dismissible" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <strong>保存失败!</strong></div>');
 		}
+
 	});
 
 	//增加
 	$("#add").delegate("", "click", function() {
 		$("#info").show();
 		$("#banner").hide();
+		$("#msg").empty();
 		var id = get_id();
 		var name = "新代理服务器";
 		empty();
 		$("#code").val(id);
 		$("#name").val(name);
+		$("#rules").val("*.local, 169.254/16,127.0.0.1");
 	});
 });
